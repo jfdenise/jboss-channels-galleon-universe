@@ -67,8 +67,6 @@ public class JBossChannelsChannel implements Channel {
         if(colon <= 0) {
             throw new ProvisioningException("Failed to determine group and artifact IDs for " + fpl);
         }
-        final StringBuilder buf = new StringBuilder();
-        buf.append(producer.substring(0, colon)).append(':').append(producer.substring(colon + 1));
 
         MavenArtifact artifact = new MavenArtifact();
         artifact.setExtension("zip");

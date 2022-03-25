@@ -20,7 +20,7 @@ import java.util.Set;
 import org.jboss.galleon.universe.maven.repo.MavenRepoManager;
 
 /**
- * This interface will be moed to an abstract class with support shared between installer and plugin.
+ * This interface will be moved to an abstract class with support shared between installer and plugin.
  * @author jdenise@redhat.com
  */
 public interface JBossChannelsRepoManager extends MavenRepoManager {

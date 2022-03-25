@@ -35,16 +35,7 @@ public class JBossChannelsUniverse implements Universe<JBossChannelsProducer> {
 
     private static final String ZIP = "zip";
 
-    private static UniverseSpec universeSource;
-
-    public static UniverseSpec getUniverseSpec() {
-        if(universeSource == null) {
-            universeSource = new UniverseSpec(JBossChannelsUniverseFactory.ID, null);
-        }
-        return universeSource;
-    }
-
-    public static String toMavenCoords(FeaturePackLocation fpl) throws ProvisioningException {
+    static String toMavenCoords(FeaturePackLocation fpl) throws ProvisioningException {
         final String producer = fpl.getProducerName();
         final int colon = producer.indexOf(':');
         if(colon <= 0) {
@@ -54,20 +45,6 @@ public class JBossChannelsUniverse implements Universe<JBossChannelsProducer> {
         buf.append(producer.substring(0, colon)).append(':').append(producer.substring(colon + 1)).append(':').append(ZIP);
         buf.append(':').append(fpl.getBuild());
         return buf.toString();
-    }
-
-    public static FeaturePackLocation toFpl(String groupId, String artifactId, String version) {
-        if(version == null) {
-            return new FeaturePackLocation(
-                    new UniverseSpec(JBossChannelsUniverseFactory.ID, null),
-                    groupId + ':' + artifactId,
-                    null, null, version);
-        }
-        final int i = version.indexOf('.');
-        return new FeaturePackLocation(
-                new UniverseSpec(JBossChannelsUniverseFactory.ID, null),
-                groupId + ':' + artifactId,
-                i > 0 ? version.substring(0, i) : version, null, version);
     }
 
     final JBossChannelsRepoManager artifactResolver;
